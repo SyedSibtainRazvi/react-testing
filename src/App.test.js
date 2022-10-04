@@ -39,11 +39,20 @@ test('mock should return value', () => {
   expect(mock).toHaveBeenCalled()
 })
 
-test('mock should resolve promise', () => {
+test('mock should resolve promise', async () => {
   const mock = jest.fn()
   mock.mockResolvedValue("Hello");
 
-  expect(mock("World")).resolves.toBe("Hello")
+  await expect(mock("World")).resolves.toBe("Hello")
   expect(mock).toHaveBeenCalledWith("World")
+
+})
+
+test('mock should resolve promise data', async () => {
+  const mock = jest.fn()
+  mock.mockResolvedValue("Sibtain");
+
+  await expect(mock("Hello")).resolves.toBe("Sibtain")
+  expect(mock).toHaveBeenCalledWith("Hello")
 
 })
